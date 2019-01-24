@@ -1,2 +1,2 @@
-# projectjs-event-organizer
-Event Organizer
+# Event Organizer
+
