@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="columns  ">
+      <div class="column"><ul class="menu-list" id="myList1"></ul></div>
+
+      <div class="column">
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input
+              id="title"
+              class="input"
+              type="text"
+              placeholder="Text input"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Content</label>
+          <div class="control">
+            <textarea
+              id="content"
+              class="textarea"
+              placeholder="Textarea"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Date</label>
+          <div class="control">
+            <input
+              id="date"
+              class="input"
+              type="date"
+              placeholder="Text input"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input type="checkbox" id="checkbox" />  Is this event strictly 18+ </a>
+            </label>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button onclick="newElement()" class="button is-link">
+              Submit
+            </button>
+          </div>
+          <div class="control">
+            <button class="button is-text">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      generateList();
+    </script>
+  </body>
+</html>
