@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+
+    <script src="./array.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./CRUD.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+        <section class="container">
+            <div class="columns is-gapless is-multiline is-mobile is-narrow">
+   <ul class="menu-list" id="listForUser"></ul>
+</div>
+<!-- <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Modal title</p>
+            <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success">Save changes</button>
+            <button class="button">Cancel</button>
+          </footer>
+        </div>
+      </div> -->
+</section>
+    <script>
+        generateListForUser();
+      </script>
+
+</body>
+</html>

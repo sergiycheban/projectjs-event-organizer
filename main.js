@@ -1,50 +1,22 @@
-var inputArray = [
-  {
-    title: "Plovdiv 2019",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: false
-  },
-  {
-    title: "Plovdiv 2020",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: false
-  },
-  {
-    title: "Plovdiv 2021",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: false
-  },
-  {
-    title: "Plovdiv 2025",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: true
-  },
-  {
-    title: "Plovdiv 2026",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: false
-  }
-];
+// localStorage.setItem('inputArray', JSON.stringify(inputArray));
+var retrievedObject = localStorage.getItem('inputArray');
+inputArray =  JSON.parse(retrievedObject);
+
+var i = 0;
+var newLineStart = ""
+var newLineEnd = ""
 
 function generateList() {
   inputArray.map(function(obj) {
-    var d1 = document.getElementById("myList1");
+    var d1 = document.getElementById("list");
 
     var visibility = obj.isAdulthood ? "" : "is-hidden";
 
     d1.insertAdjacentHTML(
       "afterend",
-      '<div class="card"> <div class="card-content"> <div class="media"> <div class="media-content"> <p class="title is-4">' +
+      '<div class="card"> <a class="level-right" onClick="CRUD.deleteEvent( this.id )" id="' + 
+        obj.id + 
+        '"class="button is-danger is-outlined"> <span class="icon is-small"> <i class="fas fa-times"></i> </span> </a> <div class="card-content"> <div class="media"> <div class="media-content"> <p class="title is-4">' +
         obj.title +
         '</div> </div> <div class="content">' +
         obj.content +
@@ -52,47 +24,23 @@ function generateList() {
         obj.dateTime +
         '</time> </div> </div> <div class="level-right ' +
         visibility +
-        '"> <figure class="image is-24x24"> <img src="resources/18.png"> </div> </div>  '
+        '"> <figure class="image is-24x24"> <img src="resources/18.png"> </div> </div>'
     );
   });
 }
 
-function newElement() {
-  var d1 = document.getElementById("myList1");
-  var inputValueTitle = document.getElementById("title").value;
-  var inputValueContent = document.getElementById("content").value;
-  var inputValueDate = document.getElementById("date").value;
-  var inputValueCheckbox = document.getElementById("checkbox").checked;
+function generateListForUser(){
+  inputArray.map(function(obj) {
+    var d = document.getElementById("listForUser");
 
-  var visibility = inputValueCheckbox ? "" : "is-hidden";
+    var visibility = obj.isAdulthood ? "" : "is-hidden";
 
-  if (
-    inputValueTitle === "" &&
-    inputValueContent === "" &&
-    inputValueTitle === ""
-  ) {
-    alert("You must write something!");
-  } else {
-    inputArray.push({
-      title: inputValueTitle,
-      content: inputValueContent,
-      dateTime: inputValueDate
-    });
-    d1.insertAdjacentHTML(
-      "afterend",
-      '<div class="card"> <div class="card-content"> <div class="media"> <div class="media-content"> <p class="title is-4">' +
-        inputValueTitle +
-        '</figure> </div> </div> <div class="content">' +
-        inputValueContent +
-        "<br /> <time>" +
-        inputValueDate +
-        '</time> </div> </div> <div class="level-right ' +
-        visibility +
-        '"> <figure class="image is-24x24"> <img src="./resources/18.png"> </div> </div>  '
-    );
-  }
-  document.getElementById("title").value = "";
-  document.getElementById("content").value = "";
-  document.getElementById("date").value = "";
-  document.getElementById("checkbox").checked = false;
+    d.insertAdjacentHTML(
+      "afterend",' <div class="column is-4"> <div class="card"> <div class="card-image"> <figure class="image is-4by3"> <img src="https://source.unsplash.com/6Ticnhs1AG0" alt="Placeholder image" class="modal-button" data-target="modal-image2"></img> </figure> </div> <div class="card-content"> <div class="content"> <h4>'+
+       obj.title + ": "+ obj.dateTime  +
+       '</h4> <p>'+ 
+        obj.content +
+        '</p> <span class="button is-link modal-button" data-target="modal-image2">I WILL GO</span> </div> </div> </div> </div>');
+  });
+
 }

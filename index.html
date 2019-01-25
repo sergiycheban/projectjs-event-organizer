@@ -14,11 +14,14 @@
       defer
       src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
     ></script>
+    <script src="./array.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./CRUD.js"></script>
     <script src="main.js"></script>
   </head>
   <body>
-    <div class="columns  ">
-      <div class="column"><ul class="menu-list" id="myList1"></ul></div>
+    <div class="columns">
+      <div class="column"><ul class="menu-list" id="list"></ul></div>
 
       <div class="column">
         <div class="field">
@@ -66,7 +69,7 @@
 
         <div class="field is-grouped">
           <div class="control">
-            <button onclick="newElement()" class="button is-link">
+            <button onclick="CRUD.newElement()" class="button is-link">
               Submit
             </button>
           </div>
@@ -77,6 +80,9 @@
       </div>
     </div>
 
+    <button onclick="Utils.changeHTML( './userScreen.html' )" class="button is-link">
+    </button>
+    
     <script>
       generateList();
     </script>
