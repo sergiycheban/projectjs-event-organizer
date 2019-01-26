@@ -21,24 +21,77 @@
 </head>
 <body>
         <section class="container">
+                <nav class="navbar" role="navigation" aria-label="main navigation">
+                        <div class="navbar-brand">
+                          <a class="navbar-item" href="https://bulma.io">
+                            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                          </a>
+                      
+                          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                          </a>
+                        </div>          
+                      
+                          <div class="navbar-end">
+                            <div class="navbar-item">
+                              <div class="buttons">
+            
+                                <a onclick="Utils.changeHTML( './login.html' )" class="button is-light">
+                                  Log in
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </nav>
             <div class="columns is-gapless is-multiline is-mobile is-narrow">
    <ul class="menu-list" id="listForUser"></ul>
 </div>
-<!-- <div class="modal">
+
+
+<div id="modal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
-            <p class="modal-card-title">Modal title</p>
-            <button class="delete" aria-label="close"></button>
+            <p class="modal-card-title">Data</p>
+            <button class="delete" onclick="addClass(false)" aria-label="close"></button>
           </header>
           <section class="modal-card-body">
+                <div class="column">
+                        <div class="field">
+                          <label class="label">Name</label>
+                          <div class="control">
+                            <input
+                              id="FNameLNaeme"
+                              class="input"
+                              type="text"
+                              placeholder="Text input"
+                            /> 
+                          </div>
+                        </div>
+                        Gender: <input id="maleRadio" type="radio" name="gender" value="Male"> Male
+                            <input id="femaleRadio" type="radio" name="gender" value="Female">Female 
+                            <br></br>
+                            Age: <input id="age" type="number" value="18"><br>
+
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success">Save changes</button>
-            <button class="button">Cancel</button>
+            <button class="button is-success" onclick="UserGo()" >Save changes</button>
+            <button class="button" onclick="addClass(false)" >Cancel</button>
           </footer>
         </div>
-      </div> -->
+
+        <div id="modal18" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <!-- Any other Bulma elements you want -->
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+</div>
+
 </section>
     <script>
         generateListForUser();

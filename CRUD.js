@@ -1,13 +1,22 @@
 var CRUD = {
     deleteEvent :function(id){ 
-    console.log( " ckajc'sianclasjca " )
-    index = inputArray.findIndex(x => x.id==id);
+    var index = inputArray.findIndex(x => x.id==id);
     inputArray.splice(index, 1);
     localStorage.setItem('inputArray', JSON.stringify(inputArray));
     document.location.reload(true);
 },
-newElement: function () {
-    var d1 = document.getElementById("list");
+    deleteVisitor: function( index ,name )
+    {
+      var i = inputArray[index].people.findIndex(x => x.name==name);
+      inputArray[index].people.splice(i, 1);
+      localStorage.setItem('inputArray', JSON.stringify(inputArray));
+      document.location.reload(true);
+    },
+    
+    newElement: function () {
+    debugger;
+
+    var d1 = document.getElementById("listAdmin");
     var inputValueTitle = document.getElementById("title").value;
     var inputValueContent = document.getElementById("content").value;
     var inputValueDate = document.getElementById("date").value;
@@ -29,7 +38,9 @@ newElement: function () {
         title: inputValueTitle,
         content: inputValueContent,
         dateTime: inputValueDate,
-        isAdulthood: inputValueCheckbox
+        isAdulthood: inputValueCheckbox,
+        people: []
+
       });
       d1.insertAdjacentHTML(
         "afterend",
@@ -43,11 +54,13 @@ newElement: function () {
           inputValueDate +
           '</time> </div> </div> <div class="level-right ' +
           visibility +
-          '"> <figure class="image is-24x24"> <img src="./resources/18.png"> </div> </div>  '
+          '"> <figure class="image is-24x24"> <img src="./resources/18.png"> </div><footer class="card-footer"><p class="card-footer-item">' +
+          'New event</p></footer> </div>  '
       );
      }
     Utils.setEmptyForm();
   
     localStorage.setItem('inputArray', JSON.stringify(inputArray));
+    console.log(inputArray)
   }
 }

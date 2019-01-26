@@ -4,7 +4,8 @@ var inputArray = [  {
     content:
       "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
     dateTime: "21-10-2019",
-    isAdulthood: false
+    isAdulthood: false,
+    people: []
   },
   {
     id: "qwe12",
@@ -12,7 +13,8 @@ var inputArray = [  {
     content:
       "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
     dateTime: "21-10-2019",
-    isAdulthood: false
+    isAdulthood: false,
+    people: []
   },
   {
     id: "78y63",
@@ -20,7 +22,9 @@ var inputArray = [  {
     content:
       "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
     dateTime: "21-10-2019",
-    isAdulthood: false
+    isAdulthood: false,
+    people: []
+
   },
   {
     id: "12ops",
@@ -28,7 +32,8 @@ var inputArray = [  {
     content:
       "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
     dateTime: "21-10-2019",
-    isAdulthood: true
+    isAdulthood: true,
+    people: []
   },
   {
     id: "z2xc2",
@@ -36,5 +41,6 @@ var inputArray = [  {
     content:
       "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
     dateTime: "21-10-2019",
-    isAdulthood: false
+    isAdulthood: false,
+    people:[]
   }]

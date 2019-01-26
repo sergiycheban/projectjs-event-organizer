@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+  />
+  <script
+    defer
+    src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+  ></script>
+    <script src="./login.js"></script>
+    <script src="./utils.js"></script>
+</head>
+<body>
+        <section class="hero is-fullheight is-medium is-primary is-bold">
+                <div class="hero-body">
+                  <div class="container">
+                    <div class="columns is-centered">
+                      <article class="card is-rounded">
+                          Login: admin____Password: admin
+                        <div class="card-content">
+                          <p class="control has-icon">
+                            <input id="login" class="input" type="email" placeholder="Login">
+                          </p>
+                          <p class="control has-icon">
+                            <input id="password" class="input" type="password" placeholder="Password">
+                          </p>
+                          <p class="control">
+                            <button onclick="loginToAdmin()" class="button is-primary is-medium is-fullwidth">
+                              <i class="fa fa-user"></i>
+                              Login
+                            </button>
+                          </p>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                </section>
+</body>
+</html>

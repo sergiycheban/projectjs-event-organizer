@@ -20,8 +20,53 @@
     <script src="main.js"></script>
   </head>
   <body>
+
+      <section class="container">
+      <!-- <div class="box cta">
+          <div class="columns">
+              <div class="column level-right">
+              <p class="has-text-centered">
+                  This is the admin panel here you can create and manage created events
+              </p>
+              </div>
+              <div class="column level-right">
+              <button onclick="Utils.changeHTML( './userScreen.html' )" class="button is-link ">
+              </button>
+            </div>
+          </div> -->
+
+
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="navbar-brand">
+                <a class="navbar-item" href="https://bulma.io">
+                  <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                </a>
+            
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>          
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <div class="buttons">
+  
+                      <a onclick="Utils.changeHTML( './userScreen.html' )" class="button is-light">
+                        Exit
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+
+
+  
+        </div>
     <div class="columns">
-      <div class="column"><ul class="menu-list" id="list"></ul></div>
+      <div class="column"><ul class="menu-list" id="listAdmin"></ul></div>
 
       <div class="column">
         <div class="field">
@@ -80,8 +125,20 @@
       </div>
     </div>
 
-    <button onclick="Utils.changeHTML( './userScreen.html' )" class="button is-link">
-    </button>
+    <div id="modalVisitor" class="modal">
+        <div class="modal-background">
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Visitors</p>
+            <button onclick="addClassForModalVisitor(false)" class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+              <div class="column"><ul class="menu-list" id="listUser"></ul></div>
+          </section>
+        </div>
+      </div>
+    </div>
+    </section>
     
     <script>
       generateList();
