@@ -22,26 +22,9 @@
   <body>
 
       <section class="container">
-      <!-- <div class="box cta">
-          <div class="columns">
-              <div class="column level-right">
-              <p class="has-text-centered">
-                  This is the admin panel here you can create and manage created events
-              </p>
-              </div>
-              <div class="column level-right">
-              <button onclick="Utils.changeHTML( './userScreen.html' )" class="button is-link ">
-              </button>
-            </div>
-          </div> -->
-
-
           <nav class="navbar" role="navigation" aria-label="main navigation">
               <div class="navbar-brand">
-                <a class="navbar-item" href="https://bulma.io">
-                  <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-                </a>
-            
+            <p >This is the admin panel here you can create and manage created events</p>
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                   <span aria-hidden="true"></span>
                   <span aria-hidden="true"></span>
@@ -130,6 +113,14 @@
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">Visitors</p>
+            <div class="tabs modal-card-title">
+                <ul>
+                  <li><a id="" onclick="Utils.sortByGender()" >Pictures</a></li>
+                  <li><a>Music</a></li>
+                  <li><a>All</a></li>
+                </ul>
+              </div>
+ 
             <button onclick="addClassForModalVisitor(false)" class="delete" aria-label="close"></button>
           </header>
           <section class="modal-card-body">

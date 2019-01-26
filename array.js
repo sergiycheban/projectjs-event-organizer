@@ -1,4 +1,5 @@
-var inputArray = [  {
+var inputArray = [
+  {
     id: "fd342",
     title: "Plovdiv 2019",
     content:
@@ -24,7 +25,6 @@ var inputArray = [  {
     dateTime: "21-10-2019",
     isAdulthood: false,
     people: []
-
   },
   {
     id: "12ops",
@@ -42,5 +42,6 @@ var inputArray = [  {
       "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
     dateTime: "21-10-2019",
     isAdulthood: false,
-    people:[]
-  }]
+    people: []
+  }
+];

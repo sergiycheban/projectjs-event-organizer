@@ -1,6 +1,5 @@
-//localStorage.setItem('inputArray', JSON.stringify(inputArray));
-var retrievedObject = localStorage.getItem('inputArray');
-inputArray =  JSON.parse(retrievedObject);
+var retrievedObject = localStorage.getItem("inputArray");
+inputArray = JSON.parse(retrievedObject);
 
 var idNow;
 
@@ -9,12 +8,11 @@ function generateList() {
     var list = document.getElementById("listAdmin");
 
     var visibility = obj.isAdulthood ? "" : "is-hidden";
-    console.log( obj.id )
 
     list.insertAdjacentHTML(
       "afterend",
-      '<div class="card"> <a class="level-right" onClick="CRUD.deleteEvent( this.id )" id="' + 
-        obj.id + 
+      '<div class="card"> <a class="level-right" onClick="CRUD.deleteEvent( this.id )" id="' +
+        obj.id +
         '"class="button is-danger is-outlined"> <span class="icon is-small"> <i class="fas fa-times"></i> </span> </a> <div class="card-content"> <div class="media"> <div class="media-content"> <p class="title is-4">' +
         obj.title +
         '</div> </div> <div class="content">' +
@@ -23,37 +21,32 @@ function generateList() {
         obj.dateTime +
         '</time> </div> </div> <div class="level-right ' +
         visibility +
-        '"> <figure class="image is-24x24"> <img src="resources/18.png"> </div> <footer class="card-footer">'+
+        '"> <figure class="image is-24x24"> <img src="resources/18.png"> </div> <footer class="card-footer">' +
         '<p class="card-footer-item">' +
-         obj.people.length +
-         ' people will go to this event</p>'+
-        '<a id="' + 
-        obj.id + 
-        '" onClick="showUser(this.id)" class="card-footer-item">Details</a>'+
-        ' </footer></div>'
+        obj.people.length +
+        " people will go to this event</p>" +
+        '<a id="' +
+        obj.id +
+        '" onClick="showUser(this.id)" class="card-footer-item">Details</a>' +
+        " </footer></div>"
     );
   });
 }
 
-function showUser(id)
-{
+function showUser(id) {
   var modalVisitor = document.getElementById("modalVisitor");
   modalVisitor.className += " is-active";
-  var index = inputArray.findIndex(x => x.id==id);
+  var index = inputArray.findIndex(x => x.id == id);
 
   generateListVisitor(index);
 }
 
-function addClass(isActive , id)
-{
-  console.log( inputArray )
-  if( isActive )
-  {
+function addClass(isActive, id) {
+  console.log(inputArray);
+  if (isActive) {
     var modal = document.getElementById("modal");
     modal.className += " is-active";
-  }
-  else
-  {
+  } else {
     var modal = document.getElementById("modal");
     modal.className = "modal";
   }
@@ -61,93 +54,89 @@ function addClass(isActive , id)
   idNow = id;
 }
 
-
-function addClassForModalVisitor(isActive)
-{
+function addClassForModalVisitor(isActive) {
   var modalVisitor = document.getElementById("modalVisitor");
-  if( isActive )
-  {
+  if (isActive) {
     modalVisitor.className += " is-active";
-  }
-  else
-  {
+  } else {
     modalVisitor.className = "modal";
   }
+  document.location.reload(true);
 }
 
-function UserGo()
-{
+function UserGo() {
   var modal = document.getElementById("modal");
 
   var FNameLName = document.getElementById("FNameLNaeme").value;
   var maleRadio = document.getElementById("maleRadio").checked;
-  // var femaleRadio = document.getElementById("femaleRadio").checked;
   var age = document.getElementById("age").value;
 
   var gender = maleRadio ? "Male" : "Female";
 
-  var index = inputArray.findIndex(x => x.id==idNow);
-  if( inputArray[index].isAdulthood )
-  {
-    if( age >= 18 )
-    {
+  var index = inputArray.findIndex(x => x.id == idNow);
+  if (inputArray[index].isAdulthood) {
+    if (age >= 18) {
       inputArray[index].people.push({
         name: FNameLName,
         age: age,
         gender: gender
       });
-      localStorage.setItem('inputArray', JSON.stringify(inputArray));
+      localStorage.setItem("inputArray", JSON.stringify(inputArray));
+    } else {
+      alert("YOU DONT HAVE 18 YERS");
     }
-    else{
-      alert( "YOU DONT HAVE 18 YERS" )
-    }
-  }
-  else
-  {
+  } else {
     inputArray[index].people.push({
       name: FNameLName,
       age: age,
       gender: gender
     });
-    localStorage.setItem('inputArray', JSON.stringify(inputArray));
+    localStorage.setItem("inputArray", JSON.stringify(inputArray));
   }
   modal.className = "modal";
 }
 
-function generateListForUser(){
+function generateListForUser() {
   inputArray.map(function(obj) {
     var d = document.getElementById("listForUser");
 
     var visibility = obj.isAdulthood ? "" : "is-hidden";
 
     d.insertAdjacentHTML(
-      "afterend",' <div class="column is-4"> <div class="card"> <div class="card-image">'+
-       '<figure class="image is-4by3"> <img src="https://source.unsplash.com/6Ticnhs1AG0" alt="Placeholder image" class="modal-button" data-target="modal-image2">'+
-       '</img> </figure> </div> <div class="card-content"> <div class="content"> <h4>'+
-       obj.title + ": "+ obj.dateTime  +
-       '</h4> <p>'+ 
+      "afterend",
+      ' <div class="column is-4"> <div class="card"> <div class="card-image">' +
+        '<figure class="image is-4by3"> <img src="resources/event.jpg" alt="Placeholder image" class="modal-button" data-target="modal-image2">' +
+        '</img> </figure> </div> <div class="card-content"> <div class="content"> <h4>' +
+        obj.title +
+        ": " +
+        obj.dateTime +
+        "</h4> <p>" +
         obj.content +
-        '</p> <button id="'+ obj.id +'"  onClick="addClass(true , this.id)">I WILL GO</button> </div> <div class="level-right ' +
+        '</p> <button class="button is-link" id="' +
+        obj.id +
+        '"  onClick="addClass(true , this.id)">I WILL GO</button> </div> <div class="level-right ' +
         visibility +
-        '"> Only 18+ </div>  </div>  </div> </div>');
+        '"><p class="has-text-danger"> 18+ </p> </div>  </div>  </div> </div>'
+    );
   });
-
 }
-
 
 function generateListVisitor(index) {
   inputArray[index].people.map(function(obj) {
     var listUser = document.getElementById("listUser");
     listUser.insertAdjacentHTML(
       "afterend",
-      '<div class="card"> <a class="level-right" onClick="CRUD.deleteVisitor( '+index+' ) ' + 
+      '<div class="card"> <a class="level-right" onClick="CRUD.deleteVisitor( ' +
+        index +
+        " ) " +
         '"button is-danger is-outlined"> <span class="icon is-small"> <i class="fas fa-times"></i> </span> </a> <div class="card-content"> <div class="media"> <div class="media-content"> <p class="title is-4">' +
         obj.name +
         '</div> </div> <div class="content">' +
         obj.gender +
         "<br /> <time>" +
-        obj.age + " yers" +
-        '</time> </div> </div></div>'
+        obj.age +
+        " yers" +
+        "</time> </div> </div></div>"
     );
   });
 }
