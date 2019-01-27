@@ -30,7 +30,14 @@ var Utils = {
   changeHTML: function(newURL) {
     location.replace(newURL);
   },
-  sortByGender: function() {
-    console.log(temp);
+  sortByGender: function(id, gender) {
+    var temp = [];
+    var index = inputArray.findIndex(x => x.id == id);
+
+    temp = inputArray[index].people.filter(function(obj) {
+      return obj.gender == gender;
+    });
+
+    return temp;
   }
 };

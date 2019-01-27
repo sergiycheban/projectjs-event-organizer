@@ -27,27 +27,42 @@ function generateList() {
         " people will go to this event</p>" +
         '<a id="' +
         obj.id +
-        '" onClick="showUser(this.id)" class="card-footer-item">Details</a>' +
+        '" onClick="showVisitors(this.id,\'' +
+        "Female" +
+        '\')" class="card-footer-item">Women visitors</a>' +
+        '<a id="' +
+        obj.id +
+        '" onClick="showVisitors(this.id,\'' +
+        "Male" +
+        '\')" class="card-footer-item">Man visitors</a>' +
+        '<a id="' +
+        obj.id +
+        '" onClick="showVisitors(this.id)" class="card-footer-item">All visitors</a>' +
         " </footer></div>"
     );
   });
 }
 
-function showUser(id) {
+function showVisitors(id, gender) {
   var modalVisitor = document.getElementById("modalVisitor");
   modalVisitor.className += " is-active";
   var index = inputArray.findIndex(x => x.id == id);
 
-  generateListVisitor(index);
+  if (gender == "Male") {
+    generateListVisitor(Utils.sortByGender(id, "Male"), index);
+  } else if (gender == "Female") {
+    generateListVisitor(Utils.sortByGender(id, "Female"), index);
+  } else {
+    generateListVisitor(inputArray[index].people, index);
+  }
 }
 
 function addClass(isActive, id) {
   console.log(inputArray);
+  var modal = document.getElementById("modal");
   if (isActive) {
-    var modal = document.getElementById("modal");
     modal.className += " is-active";
   } else {
-    var modal = document.getElementById("modal");
     modal.className = "modal";
   }
 
@@ -64,7 +79,7 @@ function addClassForModalVisitor(isActive) {
   document.location.reload(true);
 }
 
-function UserGo() {
+function visitTheEvent() {
   var modal = document.getElementById("modal");
 
   var FNameLName = document.getElementById("FNameLNaeme").value;
@@ -105,24 +120,24 @@ function generateListForUser() {
     d.insertAdjacentHTML(
       "afterend",
       ' <div class="column is-4"> <div class="card"> <div class="card-image">' +
-        '<figure class="image is-4by3"> <img src="resources/event.jpg" alt="Placeholder image" class="modal-button" data-target="modal-image2">' +
+        '<figure class="image is-4by3"> <img src="resources/photo-1520011597487-ebdd1ea20ab0.jpg" alt="Placeholder image" class="modal-button" data-target="modal-image2">' +
         '</img> </figure> </div> <div class="card-content"> <div class="content"> <h4>' +
         obj.title +
         ": " +
         obj.dateTime +
         "</h4> <p>" +
         obj.content +
-        '</p> <button class="button is-link" id="' +
+        '</p>     <div class="columns"> <div class="column">  <button class="button is-light" id="' +
         obj.id +
-        '"  onClick="addClass(true , this.id)">I WILL GO</button> </div> <div class="level-right ' +
+        '"  onClick="addClass(true , this.id)">I WILL GO</button> </div><div class="column"> </div> <div class="level-right ' +
         visibility +
-        '"><p class="has-text-danger"> 18+ </p> </div>  </div>  </div> </div>'
+        '"><p class="has-text-danger"> 18+ </p></div> </div> </div>  </div>  </div> </div>'
     );
   });
 }
 
-function generateListVisitor(index) {
-  inputArray[index].people.map(function(obj) {
+function generateListVisitor(event, index) {
+  event.map(function(obj) {
     var listUser = document.getElementById("listUser");
     listUser.insertAdjacentHTML(
       "afterend",

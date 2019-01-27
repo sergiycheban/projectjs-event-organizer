@@ -13,8 +13,6 @@ var CRUD = {
   },
 
   newElement: function() {
-    debugger;
-
     var d1 = document.getElementById("listAdmin");
     var inputValueTitle = document.getElementById("title").value;
     var inputValueContent = document.getElementById("content").value;
