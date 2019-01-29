@@ -111,6 +111,21 @@ function visitTheEvent() {
   modal.className = "modal";
 }
 
+function openTab(evt, tabName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("content-tab");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tab");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " is-active";
+}
+
+
 function generateListForUser() {
   inputArray.map(function(obj) {
     var d = document.getElementById("listForUser");
@@ -119,7 +134,7 @@ function generateListForUser() {
 
     d.insertAdjacentHTML(
       "afterend",
-      ' <div class="column is-4"> <div class="card"> <div class="card-image">' +
+      ' <div class="column is-4"> <div id="'+ obj.id+'Div" class="card"> <div class="card-image">' +
         '<figure class="image is-4by3"> <img src="resources/photo-1520011597487-ebdd1ea20ab0.jpg" alt="Placeholder image" class="modal-button" data-target="modal-image2">' +
         '</img> </figure> </div> <div class="card-content"> <div class="content"> <h4>' +
         obj.title +

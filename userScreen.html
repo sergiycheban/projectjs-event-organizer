@@ -46,9 +46,35 @@
                           </div>
                         </div>
                       </nav>
-            <div class="columns is-gapless is-multiline is-mobile is-narrow">
-   <ul class="menu-list" id="listForUser"></ul>
-</div>
+
+                            
+                          <nav class="tabs">
+                                  <div class="container">
+                                    <ul>
+                                      <li class="tab is-active" onclick="openTab(event,'WebDev')"><a >Web Development</a></li>
+                                      <li class="tab" onclick="openTab(event,'WebAud')"><a >Website Audit</a></li>
+                                      <li class="tab" onclick="openTab(event,'Support')"><a >Support</a></li>
+                                    </ul>
+                                  </div>
+                                </nav>
+                            </div>
+                          
+                          <div class="container section">
+                              <div id="WebDev" class="content-tab" >
+                                <p>
+                                    <div class="columns is-gapless is-multiline is-mobile is-narrow">
+                                        <ul class="menu-list" id="listForUser"></ul>
+                                     </div>
+                              </div>
+                              <div id="WebAud" class="content-tab" style="display:none">
+                                  <p>2</p>
+                              </div>
+                              <div id="Support" class="content-tab" style="display:none">
+                                 <p>3</p>>
+                              </div>
+                          </div>
+                          
+                            
 
 
 <div id="modal" class="modal">
