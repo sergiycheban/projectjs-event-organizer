@@ -31,13 +31,49 @@ var Utils = {
     location.replace(newURL);
   },
   sortByGender: function(id, gender) {
-    var temp = [];
+    var listSortByGender = [];
     var index = arrayOfEvents.findIndex(x => x.id == id);
 
-    temp = arrayOfEvents[index].people.filter(function(obj) {
+    listSortByGender = arrayOfEvents[index].people.filter(function(obj) {
       return obj.gender == gender;
     });
 
-    return temp;
+    return listSortByGender;
+  },
+  openTab: function(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  },
+
+  addSymbolPrice: function() {
+    var arrayWithSymbolPrice = [];
+    arrayOfEvents.map(function(obj) {
+      if (obj.price != 0) {
+        arrayWithSymbolPrice.push("$" + obj.title);
+      } else {
+        arrayWithSymbolPrice.push("!" + obj.title);
+      }
+      console.log(arrayWithSymbolPrice);
+    });
+  },
+  addSymbolAgeControl: function() {
+    var arrayWithSymbolAgeControl = [];
+    arrayOfEvents.map(function(obj) {
+      if (obj.isAdulthood) {
+        arrayWithSymbolAgeControl.push("*" + obj.title);
+      } else {
+        arrayWithSymbolAgeControl.push("#" + obj.title);
+      }
+      console.log(arrayWithSymbolAgeControl);
+    });
   }
 };

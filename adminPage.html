@@ -35,7 +35,9 @@
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="buttons">
-  
+                    <a onclick="bestFit()" class="button is-light">
+                      Best fit
+                    </a>
                   <a onclick="Utils.changeHTML( './userScreen.html' )" class="button is-light">
                     Exit
                   </a>
@@ -44,26 +46,6 @@
             </div>
           </div>
         </nav>
-
-  <div class="tabs is-toggle">
-     <ul>
-       <li class="is-active">
-         <a onclick="generateListByCriteria()">
-           <span>All</span>
-         </a>
-       </li>
-       <li>
-         <a>
-           <span>Only 18+</span>
-         </a>
-       </li>
-       <li>
-          <a>
-            <span>For minors</span>
-          </a>
-        </li>
-     </ul>
-   </div>
 
     <div class="columns">
       <div id="adminListEventDiv" class="column"><ul class="menu-list" id="listAdmin"></ul></div>
@@ -91,6 +73,20 @@
             ></textarea>
           </div>
         </div>
+          
+
+        <div class="column">
+            <div class="field">
+              <label class="label">Price</label>
+              <div class="control">
+                <input
+                type="number"
+                  id="price"
+                  class="input"
+                  placeholder="Text input"
+                />
+              </div>
+            </div>
 
         <div class="field">
           <label class="label">Date</label>

@@ -18,8 +18,10 @@ var CRUD = {
     var inputValueContent = document.getElementById("content").value;
     var inputValueDate = document.getElementById("date").value;
     var inputValueCheckbox = document.getElementById("checkbox").checked;
+    var inputPrice = document.getElementById("price").value;
 
     var visibility = inputValueCheckbox ? "" : "is-hidden";
+    var visibilityPrice = inputPrice != 0 ? "" : "is-hidden";
     var id = Utils.getUniqueId();
     console.log(inputValueTitle);
 
@@ -36,6 +38,7 @@ var CRUD = {
         content: inputValueContent,
         dateTime: inputValueDate,
         isAdulthood: inputValueCheckbox,
+        price: inputPrice,
         people: []
       });
       d1.insertAdjacentHTML(
@@ -48,7 +51,9 @@ var CRUD = {
           inputValueContent +
           "<br /> <time>" +
           inputValueDate +
-          '</time> </div> </div> <div class="level-right ' +
+          '</time> </div> </div><div class="level-right ' +
+          visibilityPrice +
+          '"> <figure class="image is-24x24"> <img src="resources/price-icon-22.png"> </div> <div class="level-right ' +
           visibility +
           '"> <figure class="image is-24x24"> <img src="./resources/18.png"> </div><footer class="card-footer"><p class="card-footer-item">' +
           "New event</p></footer> </div>  "

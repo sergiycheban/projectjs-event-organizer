@@ -1,54 +1,10 @@
-var arrayOfEvents = [
-  {
-    id: "fd342",
-    title: "Plovdiv 2019",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: false,
-    people: []
-  },
-  {
-    id: "qwe12",
-    title: "Plovdiv 2020",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: false,
-    people: []
-  },
-  {
-    id: "78y63",
-    title: "Plovdiv 2021",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: false,
-    people: []
-  },
-  {
-    id: "12ops",
-    title: "Plovdiv 2025",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: true,
-    people: []
-  },
-  {
-    id: "z2xc2",
-    title: "Plovdiv 2026",
-    content:
-      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
-    dateTime: "21-10-2019",
-    isAdulthood: false,
-    people: []
-  }
-];
-// localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+if (localStorage.getItem("arrayOfEvents").length == 2)
+  localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+console.log(localStorage.getItem("arrayOfEvents"));
 var retrievedObject = localStorage.getItem("arrayOfEvents");
 arrayOfEvents = JSON.parse(retrievedObject);
 
+var listNumberOfVisitors = [];
 var idNow;
 
 function showVisitors(id, gender) {
@@ -75,20 +31,6 @@ function addClass(isActive, id) {
   }
 
   idNow = id;
-}
-
-function openTab(evt, tabName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("content-tab");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tab");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" is-active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " is-active";
 }
 
 function addClassForModalVisitor(isActive) {
@@ -133,19 +75,15 @@ function visitTheEvent() {
   modal.className = "modal";
 }
 
-function generateListByCriteria() {
-  generateEmptyList();
-  var arrayOfEventsByCriterion = arrayOfEvents.filter(function(obj) {
-    return obj.isAdulthood == true;
-  });
-  //generateList(arrayOfEventsByCriterion);
-}
+function bestFit() {}
 
 function generateList(events) {
   events.map(function(obj) {
+    listNumberOfVisitors.push(obj.people.length);
     var list = document.getElementById("listAdmin");
 
-    var visibility = obj.isAdulthood ? "" : "is-hidden";
+    var visibility18 = obj.isAdulthood ? "" : "is-hidden";
+    var visibilityPrice = obj.price != 0 ? "" : "is-hidden";
 
     list.insertAdjacentHTML(
       "afterend",
@@ -157,8 +95,10 @@ function generateList(events) {
         obj.content +
         "<br /> <time>" +
         obj.dateTime +
-        '</time> </div> </div> <div class="level-right ' +
-        visibility +
+        '</time> </div> </div><div class="level-right ' +
+        visibilityPrice +
+        '"> <figure class="image is-24x24"> <img src="resources/price-icon-22.png"> </div> <div class="level-right ' +
+        visibility18 +
         '"> <figure class="image is-24x24"> <img src="resources/18.png"> </div> <footer class="card-footer">' +
         '<p class="card-footer-item">' +
         obj.people.length +
@@ -181,11 +121,12 @@ function generateList(events) {
   });
 }
 
-function generateListForUser() {
+function generateListForUser(idList = "listForUser") {
   arrayOfEvents.map(function(obj) {
-    var d = document.getElementById("listForUser");
+    var d = document.getElementById(idList);
 
-    var visibility = obj.isAdulthood ? "" : "is-hidden";
+    var visibility18 = obj.isAdulthood ? "" : "is-hidden";
+    var visibilityPrice = obj.price != 0 ? "" : "is-hidden";
 
     d.insertAdjacentHTML(
       "afterend",
@@ -200,16 +141,12 @@ function generateListForUser() {
         '</p>     <div class="columns"> <div class="column">  <button class="button is-warning" id="' +
         obj.id +
         '"  onClick="addClass(true , this.id)">I WILL GO</button> </div><div class="column"> </div> <div class="level-right ' +
-        visibility +
+        visibilityPrice +
+        '"><p class="has-text-danger"> $ </p></div><div class="column"> </div> <div class="level-right ' +
+        visibility18 +
         '"><p class="has-text-danger"> 18+ </p></div> </div> </div>  </div>  </div> </div>'
     );
   });
-}
-
-function generateEmptyList() {
-  console.log("sadh;jasd;k");
-  // var listUser = document.getElementById("listAdmin");
-  // listUser.removeChild("listAdmin");
 }
 
 function generateListVisitor(event, index) {
