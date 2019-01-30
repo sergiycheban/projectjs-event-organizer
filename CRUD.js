@@ -1,14 +1,14 @@
 var CRUD = {
   deleteEvent: function(id) {
-    var index = inputArray.findIndex(x => x.id == id);
-    inputArray.splice(index, 1);
-    localStorage.setItem("inputArray", JSON.stringify(inputArray));
+    var index = arrayOfEvents.findIndex(x => x.id == id);
+    arrayOfEvents.splice(index, 1);
+    localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
     document.location.reload(true);
   },
   deleteVisitor: function(index, name) {
-    var i = inputArray[index].people.findIndex(x => x.name == name);
-    inputArray[index].people.splice(i, 1);
-    localStorage.setItem("inputArray", JSON.stringify(inputArray));
+    var i = arrayOfEvents[index].people.findIndex(x => x.name == name);
+    arrayOfEvents[index].people.splice(i, 1);
+    localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
     document.location.reload(true);
   },
 
@@ -30,7 +30,7 @@ var CRUD = {
     ) {
       alert("You must write something!");
     } else {
-      inputArray.push({
+      arrayOfEvents.push({
         id: id,
         title: inputValueTitle,
         content: inputValueContent,
@@ -56,7 +56,7 @@ var CRUD = {
     }
     Utils.setEmptyForm();
 
-    localStorage.setItem("inputArray", JSON.stringify(inputArray));
-    console.log(inputArray);
+    localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+    console.log(arrayOfEvents);
   }
 };

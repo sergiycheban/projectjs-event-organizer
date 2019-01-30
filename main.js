@@ -1,17 +1,155 @@
-var retrievedObject = localStorage.getItem("inputArray");
-inputArray = JSON.parse(retrievedObject);
+var arrayOfEvents = [
+  {
+    id: "fd342",
+    title: "Plovdiv 2019",
+    content:
+      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
+    dateTime: "21-10-2019",
+    isAdulthood: false,
+    people: []
+  },
+  {
+    id: "qwe12",
+    title: "Plovdiv 2020",
+    content:
+      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
+    dateTime: "21-10-2019",
+    isAdulthood: false,
+    people: []
+  },
+  {
+    id: "78y63",
+    title: "Plovdiv 2021",
+    content:
+      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
+    dateTime: "21-10-2019",
+    isAdulthood: false,
+    people: []
+  },
+  {
+    id: "12ops",
+    title: "Plovdiv 2025",
+    content:
+      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
+    dateTime: "21-10-2019",
+    isAdulthood: true,
+    people: []
+  },
+  {
+    id: "z2xc2",
+    title: "Plovdiv 2026",
+    content:
+      "След четири години подготовка, програмата на „Пловдив – Европейска столица на културата 2019“ е вече факт",
+    dateTime: "21-10-2019",
+    isAdulthood: false,
+    people: []
+  }
+];
+// localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+var retrievedObject = localStorage.getItem("arrayOfEvents");
+arrayOfEvents = JSON.parse(retrievedObject);
 
 var idNow;
 
-function generateList() {
-  inputArray.map(function(obj) {
+function showVisitors(id, gender) {
+  var modalVisitor = document.getElementById("modalVisitor");
+  modalVisitor.className += " is-active";
+  var index = arrayOfEvents.findIndex(x => x.id == id);
+
+  if (gender == "Male") {
+    generateListVisitor(Utils.sortByGender(id, "Male"), index);
+  } else if (gender == "Female") {
+    generateListVisitor(Utils.sortByGender(id, "Female"), index);
+  } else {
+    generateListVisitor(arrayOfEvents[index].people, index);
+  }
+}
+
+function addClass(isActive, id) {
+  console.log(arrayOfEvents);
+  var modal = document.getElementById("modal");
+  if (isActive) {
+    modal.className += " is-active";
+  } else {
+    modal.className = "modal";
+  }
+
+  idNow = id;
+}
+
+function openTab(evt, tabName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("content-tab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tab");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " is-active";
+}
+
+function addClassForModalVisitor(isActive) {
+  var modalVisitor = document.getElementById("modalVisitor");
+  if (isActive) {
+    modalVisitor.className += " is-active";
+  } else {
+    modalVisitor.className = "modal";
+  }
+  document.location.reload(true);
+}
+
+function visitTheEvent() {
+  var modal = document.getElementById("modal");
+
+  var FNameLName = document.getElementById("FNameLNaeme").value;
+  var maleRadio = document.getElementById("maleRadio").checked;
+  var age = document.getElementById("age").value;
+
+  var gender = maleRadio ? "Male" : "Female";
+
+  var index = arrayOfEvents.findIndex(x => x.id == idNow);
+  if (arrayOfEvents[index].isAdulthood) {
+    if (age >= 18) {
+      arrayOfEvents[index].people.push({
+        name: FNameLName,
+        age: age,
+        gender: gender
+      });
+      localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+    } else {
+      alert("YOU DONT HAVE 18 YERS");
+    }
+  } else {
+    arrayOfEvents[index].people.push({
+      name: FNameLName,
+      age: age,
+      gender: gender
+    });
+    localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+  }
+  modal.className = "modal";
+}
+
+function generateListByCriteria() {
+  generateEmptyList();
+  var arrayOfEventsByCriterion = arrayOfEvents.filter(function(obj) {
+    return obj.isAdulthood == true;
+  });
+  //generateList(arrayOfEventsByCriterion);
+}
+
+function generateList(events) {
+  events.map(function(obj) {
     var list = document.getElementById("listAdmin");
 
     var visibility = obj.isAdulthood ? "" : "is-hidden";
 
     list.insertAdjacentHTML(
       "afterend",
-      '<div class="card"> <a class="level-right" onClick="CRUD.deleteEvent( this.id )" id="' +
+      '<div class="card has-background-light"> <a class="level-right" onClick="CRUD.deleteEvent( this.id )" id="' +
         obj.id +
         '"class="button is-danger is-outlined"> <span class="icon is-small"> <i class="fas fa-times"></i> </span> </a> <div class="card-content"> <div class="media"> <div class="media-content"> <p class="title is-4">' +
         obj.title +
@@ -43,98 +181,15 @@ function generateList() {
   });
 }
 
-function showVisitors(id, gender) {
-  var modalVisitor = document.getElementById("modalVisitor");
-  modalVisitor.className += " is-active";
-  var index = inputArray.findIndex(x => x.id == id);
-
-  if (gender == "Male") {
-    generateListVisitor(Utils.sortByGender(id, "Male"), index);
-  } else if (gender == "Female") {
-    generateListVisitor(Utils.sortByGender(id, "Female"), index);
-  } else {
-    generateListVisitor(inputArray[index].people, index);
-  }
-}
-
-function addClass(isActive, id) {
-  console.log(inputArray);
-  var modal = document.getElementById("modal");
-  if (isActive) {
-    modal.className += " is-active";
-  } else {
-    modal.className = "modal";
-  }
-
-  idNow = id;
-}
-
-function addClassForModalVisitor(isActive) {
-  var modalVisitor = document.getElementById("modalVisitor");
-  if (isActive) {
-    modalVisitor.className += " is-active";
-  } else {
-    modalVisitor.className = "modal";
-  }
-  document.location.reload(true);
-}
-
-function visitTheEvent() {
-  var modal = document.getElementById("modal");
-
-  var FNameLName = document.getElementById("FNameLNaeme").value;
-  var maleRadio = document.getElementById("maleRadio").checked;
-  var age = document.getElementById("age").value;
-
-  var gender = maleRadio ? "Male" : "Female";
-
-  var index = inputArray.findIndex(x => x.id == idNow);
-  if (inputArray[index].isAdulthood) {
-    if (age >= 18) {
-      inputArray[index].people.push({
-        name: FNameLName,
-        age: age,
-        gender: gender
-      });
-      localStorage.setItem("inputArray", JSON.stringify(inputArray));
-    } else {
-      alert("YOU DONT HAVE 18 YERS");
-    }
-  } else {
-    inputArray[index].people.push({
-      name: FNameLName,
-      age: age,
-      gender: gender
-    });
-    localStorage.setItem("inputArray", JSON.stringify(inputArray));
-  }
-  modal.className = "modal";
-}
-
-function openTab(evt, tabName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("content-tab");
-  for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tab");
-  for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " is-active";
-}
-
-
 function generateListForUser() {
-  inputArray.map(function(obj) {
+  arrayOfEvents.map(function(obj) {
     var d = document.getElementById("listForUser");
 
     var visibility = obj.isAdulthood ? "" : "is-hidden";
 
     d.insertAdjacentHTML(
       "afterend",
-      ' <div class="column is-4"> <div id="'+ obj.id+'Div" class="card"> <div class="card-image">' +
+      ' <div class="column is-4"> <div class="card"> <div class="card-image">' +
         '<figure class="image is-4by3"> <img src="resources/photo-1520011597487-ebdd1ea20ab0.jpg" alt="Placeholder image" class="modal-button" data-target="modal-image2">' +
         '</img> </figure> </div> <div class="card-content"> <div class="content"> <h4>' +
         obj.title +
@@ -142,13 +197,19 @@ function generateListForUser() {
         obj.dateTime +
         "</h4> <p>" +
         obj.content +
-        '</p>     <div class="columns"> <div class="column">  <button class="button is-light" id="' +
+        '</p>     <div class="columns"> <div class="column">  <button class="button is-warning" id="' +
         obj.id +
         '"  onClick="addClass(true , this.id)">I WILL GO</button> </div><div class="column"> </div> <div class="level-right ' +
         visibility +
         '"><p class="has-text-danger"> 18+ </p></div> </div> </div>  </div>  </div> </div>'
     );
   });
+}
+
+function generateEmptyList() {
+  console.log("sadh;jasd;k");
+  // var listUser = document.getElementById("listAdmin");
+  // listUser.removeChild("listAdmin");
 }
 
 function generateListVisitor(event, index) {

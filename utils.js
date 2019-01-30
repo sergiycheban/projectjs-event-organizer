@@ -32,9 +32,9 @@ var Utils = {
   },
   sortByGender: function(id, gender) {
     var temp = [];
-    var index = inputArray.findIndex(x => x.id == id);
+    var index = arrayOfEvents.findIndex(x => x.id == id);
 
-    temp = inputArray[index].people.filter(function(obj) {
+    temp = arrayOfEvents[index].people.filter(function(obj) {
       return obj.gender == gender;
     });
 
