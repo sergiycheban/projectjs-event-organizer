@@ -39,6 +39,7 @@ var CRUD = {
         dateTime: inputValueDate,
         isAdulthood: inputValueCheckbox,
         price: inputPrice,
+        isArchive: false,
         people: []
       });
       d1.insertAdjacentHTML(

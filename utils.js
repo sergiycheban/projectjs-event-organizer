@@ -54,6 +54,8 @@ var Utils = {
     evt.currentTarget.className += " is-active";
   },
 
+  // Всички събития, които са платени трябва да визуализират заглавията си със знака $ пред
+  // имената си. Безплатни събития трябва да визуализират имената си със знак “!”
   addSymbolPrice: function() {
     var arrayWithSymbolPrice = [];
     arrayOfEvents.map(function(obj) {
@@ -65,6 +67,10 @@ var Utils = {
       console.log(arrayWithSymbolPrice);
     });
   },
+
+  //   Изведете всички събития като ги групирате, събитията които са предназначени за
+  // пълнолетни посетители трябва да имат звездичка пред името си “*” а тези подходящи за
+  // непълнолетни диез “#”
   addSymbolAgeControl: function() {
     var arrayWithSymbolAgeControl = [];
     arrayOfEvents.map(function(obj) {
@@ -75,5 +81,9 @@ var Utils = {
       }
       console.log(arrayWithSymbolAgeControl);
     });
+  },
+
+  getIndexByMaxValue: function(array) {
+    return array.indexOf(Math.max(...array));
   }
 };

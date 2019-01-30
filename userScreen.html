@@ -47,28 +47,9 @@
                         </div>
                       </nav>
 
-<nav class="tabs">
-  <div class="container">
-    <ul>
-      <li class="tab is-active" onclick="Utils.openTab(event,'listForUserTab')"><a >All</a></li>
-      <li class="tab" onclick="Utils.openTab(event,'listForYoungTab')"><a >Under 18 years old</a></li>
-    </ul>
-  </div>
-</nav>
-</div>
-
-<div class="container section">
-<div id="listForUserTab" class="content-tab" >
-    <div class="columns is-gapless is-multiline is-mobile is-narrow">
-        <ul class="menu-list" id="listForUser"></ul>
-     </div>
-</div>
-<div id="listForYoungTab" class="content-tab">
-  <div class="columns is-gapless is-multiline is-mobile is-narrow">
-    <ul class="menu-list" id="listForYoung"></ul>
- </div>
-</div>
-</div>
+                      <div class="columns is-gapless is-multiline is-mobile is-narrow">
+                          <ul class="menu-list" id="listForUser"></ul>
+                       </div>
 
 
 <div id="modal" class="modal">
@@ -105,6 +86,8 @@
 
 </section>
     <script>
+      if (localStorage.getItem("arrayOfEvents").length == 2)
+          localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
         generateListForUser();
     </script>
 </body>
