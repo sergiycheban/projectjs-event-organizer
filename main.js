@@ -68,6 +68,11 @@ function addClassForModalVisitor(isActive) {
 // необходимите съобщения, по ваш избор.
 function bestFit() {
   var arrayOfLength = [];
+  if (arrayOfEvents == []) {
+    alert("Dont have events");
+    return;
+  }
+
   if ((arrayOfEvents = [])) {
     alert("Dont have avents");
     return;
