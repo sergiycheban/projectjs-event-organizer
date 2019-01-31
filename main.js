@@ -125,10 +125,15 @@ function listingEvents() {
 // Създайте механизъм за филтриране на събития по определен критерии. Функцията трябва
 // да има възможност да получава име / или флаг за достъп и да визуализира само тези
 // събития които отговарят на критериите.
-function sortByCriterion(word) {
+function sortByCriterion(parameter) {
   var arrayOfFindEvent = [];
   arrayOfEvents.map(function(obj) {
-    var isFind = obj.title.search(word);
+    if (typeof parameter === "boolean") {
+      if (obj.isAdulthood) {
+        arrayOfFindEvent.push(obj);
+      }
+    }
+    var isFind = obj.title.search(parameter);
     if (isFind != -1) arrayOfFindEvent.push(obj);
   });
   console.log(arrayOfFindEvent);
