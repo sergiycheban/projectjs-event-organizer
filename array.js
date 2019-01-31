@@ -8,6 +8,7 @@ var arrayOfEvents = [
     isAdulthood: false,
     price: 30,
     isArchive: false,
+    rating: [],
     people: []
   },
   {
@@ -19,6 +20,7 @@ var arrayOfEvents = [
     isAdulthood: false,
     price: 1300,
     isArchive: false,
+    rating: [],
     people: []
   },
   {
@@ -29,6 +31,8 @@ var arrayOfEvents = [
     dateTime: "21-10-2019",
     isAdulthood: false,
     price: 0,
+    isArchive: false,
+    rating: [],
     people: []
   },
   {
@@ -40,6 +44,7 @@ var arrayOfEvents = [
     isAdulthood: true,
     price: 300,
     isArchive: false,
+    rating: [],
     people: []
   },
   {
@@ -51,6 +56,7 @@ var arrayOfEvents = [
     isAdulthood: false,
     price: 0,
     isArchive: false,
+    rating: [],
     people: []
   }
 ];

@@ -58,7 +58,7 @@
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">Data</p>
-            <button class="delete" onclick="addClass(false)" aria-label="close"></button>
+            <button class="delete" onclick="showModalVisitorReg(false)" aria-label="close"></button>
           </header>
           <section class="modal-card-body">
           <div class="column">
@@ -74,14 +74,15 @@
              </div>
            </div>
            Gender: <input id="maleRadio" type="radio" name="gender" value="Male"> Male
-               <input id="femaleRadio" type="radio" name="gender" value="Female">Female 
-               <br></br>
-               Age: <input id="age" type="number" value="18"><br>
+            <input id="femaleRadio" type="radio" name="gender" value="Female">Female 
+            <br></br>
+           Age: <input id="age" type="number" value="18"><br>
+           Rating: <input id="rating" type="number" min="1" max="5" ><br>
 
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success" onclick="visitTheEvent()" >Save changes</button>
-            <button class="button" onclick="addClass(false)" >Cancel</button>
+            <button class="button is-success" onclick="CRUD.addVisitor()" >Save changes</button>
+            <button class="button" onclick="showModalVisitorReg(false)" >Cancel</button>
           </footer>
         </div>
 

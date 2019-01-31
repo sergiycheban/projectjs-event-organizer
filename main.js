@@ -1,7 +1,4 @@
-//When deleting all events, everything is restored to the default value,
-//this can be avoided by commenting out this {if} )
-if (localStorage.getItem("arrayOfEvents").length == 2)
-  localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+//localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
 
 // Съхранява в колекция списък с всички събития, които са организирани.
 var retrievedObject = localStorage.getItem("arrayOfEvents");
@@ -10,10 +7,17 @@ arrayOfEvents = JSON.parse(retrievedObject);
 var listNumberOfVisitors = [];
 var idNow;
 
+var isLock = false;
+
 // Визуализирайте списък с всички клиенти които присъстват на определено събитие.
 // Предоставете възможност да бъдат филтрирани по пол, тоест да се визуализират само
 // мъжете или само жените.
 function showVisitors(id, gender) {
+  if( isLock )
+  {
+    alert( "System lock" )
+    return
+  }
   var modalVisitor = document.getElementById("modalVisitor");
   modalVisitor.className += " is-active";
   var index = arrayOfEvents.findIndex(x => x.id == id);
@@ -27,7 +31,12 @@ function showVisitors(id, gender) {
   }
 }
 
-function addClass(isActive, id) {
+function showModalVisitorReg(isActive, id) {
+  if( isLock )
+  {
+    alert( "System lock" )
+    return
+  }
   var modal = document.getElementById("modal");
   if (isActive) {
     modal.className += " is-active";
@@ -38,6 +47,15 @@ function addClass(isActive, id) {
   idNow = id;
 }
 
+// Създайте функционалност който да спира добавянето на събития или добавянето на
+// клиенти на централно ниво. Когато бъде активирана при опит да се добави събитие или
+// клиент потребителя получава съобщение че операцията не може да бъде извършена,
+// защото системата е затворена.
+function lock( isLockUnlock )
+{
+  isLock = isLockUnlock
+}
+
 function addClassForModalVisitor(isActive) {
   var modalVisitor = document.getElementById("modalVisitor");
   if (isActive) {
@@ -46,42 +64,6 @@ function addClassForModalVisitor(isActive) {
     modalVisitor.className = "modal";
   }
   document.location.reload(true);
-}
-
-// Добавете клиент към вече създадено събитие. Ако възрастта на клиента не му позволява
-// да присъства на събитието, известете с помощта на необходимото съобщение.
-function visitTheEvent() {
-  var modal = document.getElementById("modal");
-
-  var FNameLName = document.getElementById("FNameLNaeme").value;
-  var maleRadio = document.getElementById("maleRadio").checked;
-  var age = document.getElementById("age").value;
-
-  var gender = maleRadio ? "Male" : "Female";
-
-  var index = arrayOfEvents.findIndex(x => x.id == idNow);
-  if (arrayOfEvents[index].isAdulthood) {
-    if (age >= 18) {
-      arrayOfEvents[index].people.push({
-        name: FNameLName,
-        age: age,
-        gender: gender,
-        money: 1000
-      });
-      localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
-    } else {
-      alert("YOU DONT HAVE 18 YERS");
-    }
-  } else {
-    arrayOfEvents[index].people.push({
-      name: FNameLName,
-      age: age,
-      gender: gender,
-      money: 1000
-    });
-    localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
-  }
-  modal.className = "modal";
 }
 
 // Създайте функционалност за извеждане на събитието с най-много добавени клиенти. Ако
@@ -99,6 +81,56 @@ function bestFit() {
 
   var i = Utils.getIndexByMaxValue(arrayOfLength);
   console.log(arrayOfEvents[i]);
+}
+
+// Създайте функционалност за архивиране на събития. Архивираните събития не могат да
+// приемат гости. Архивираните събития, могат да бъдат само и единствено преглеждани
+// като такива.
+// Названието на всяко архивирано събитие трябва да започва със символа ~ 
+function archivedEvent(id)
+{
+  arrayOfEvents.map(function(obj) {
+      if( obj.id == id )
+      {
+        if( obj.isArchive == true )
+        {
+          obj.isArchive = false
+          localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+          document.location.reload(true);
+        }
+        else
+        {
+          obj.title = "~ " + obj.title 
+          obj.isArchive = true
+          localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
+          document.location.reload(true);
+        }
+      }
+  });
+}
+
+// Създайте функционалност за листинг на архивирани събития. Разширете
+// функционалността на листинга така че да могат да се листват
+// o Всички събития
+// o Само тези събития които предстоят да се посещават от клиенти
+// o Само архивираните събития
+function listingEvents()
+{
+  var allEvents = []
+  var onlyVisitedEvents = []
+  var onlyArcheveEvents = []
+  arrayOfEvents.map(function(obj) {
+    allEvents.push(obj)
+
+    if( obj.people.length > 0 )
+      onlyVisitedEvents.push(obj)
+    
+    if( obj.isArchive ===true )
+      onlyArcheveEvents.push(obj)
+  });
+  console.log(allEvents)
+  console.log(onlyVisitedEvents)
+  console.log(onlyArcheveEvents)
 }
 
 // Създайте механизъм за филтриране на събития по определен критерии. Функцията трябва

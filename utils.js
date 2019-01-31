@@ -82,7 +82,7 @@ var Utils = {
       console.log(arrayWithSymbolAgeControl);
     });
   },
-
+  
   getIndexByMaxValue: function(array) {
     return array.indexOf(Math.max(...array));
   }
