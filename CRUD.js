@@ -2,10 +2,9 @@ var CRUD = {
   // Изтрива събитие по уникален идентификатор, и извежда съобщение за успешно
   // извършена операция
   deleteEvent: function(id) {
-    if( isLock )
-    {
-      alert( "System lock" )
-      return
+    if (isLock) {
+      alert("System lock");
+      return;
     }
     var index = arrayOfEvents.findIndex(x => x.id == id);
     arrayOfEvents.splice(index, 1);
@@ -15,10 +14,9 @@ var CRUD = {
 
   // Премахнете присъстващ потребител от събитието.
   deleteVisitor: function(index, name) {
-    if( isLock )
-    {
-      alert( "System lock" )
-      return
+    if (isLock) {
+      alert("System lock");
+      return;
     }
     var i = arrayOfEvents[index].people.findIndex(x => x.name == name);
     arrayOfEvents[index].people.splice(i, 1);
@@ -32,10 +30,9 @@ var CRUD = {
   // Актуализира събитие по уникален идентификатор и изведете съобщение за правилно
   // извършена операция.
   newElement: function() {
-    if( isLock )
-    {
-      alert( "System lock" )
-      return
+    if (isLock) {
+      alert("System lock");
+      return;
     }
     var d1 = document.getElementById("listAdmin");
     var inputValueTitle = document.getElementById("title").value;
@@ -92,35 +89,32 @@ var CRUD = {
     console.log(arrayOfEvents);
   },
   // Добавете клиент към вече създадено събитие. Ако възрастта на клиента не му позволява
-// да присъства на събитието, известете с помощта на необходимото съобщение.
-addVisitor: function() {
-  if( isLock )
-  {
-    alert( "System lock" )
-    return
-  }
+  // да присъства на събитието, известете с помощта на необходимото съобщение.
+  addVisitor: function() {
+    if (isLock) {
+      alert("System lock");
+      return;
+    }
 
-  var modal = document.getElementById("modal");
+    var modal = document.getElementById("modal");
 
-  var FNameLName = document.getElementById("FNameLNaeme").value;
-  var maleRadio = document.getElementById("maleRadio").checked;
-  var age = document.getElementById("age").value;
+    var FNameLName = document.getElementById("FNameLNaeme").value;
+    var maleRadio = document.getElementById("maleRadio").checked;
+    var age = document.getElementById("age").value;
 
-  var amountOfMoney = Math.floor(Math.random() * 100) + 1;
+    var amountOfMoney = Math.floor(Math.random() * 100) + 1;
 
-  var gender = maleRadio ? "Male" : "Female";
+    var gender = maleRadio ? "Male" : "Female";
 
-  var index = arrayOfEvents.findIndex(x => x.id == idNow);
-  if( age < 18 && arrayOfEvents[index].isAdulthood )
-  {
-    alert("YOU DONT HAVE 18 YERS");
-    return
-  }
-  if( FNameLName == "" )
-  {
-    alert("You must write something!");
-    return
-  }
+    var index = arrayOfEvents.findIndex(x => x.id == idNow);
+    if (age < 18 && arrayOfEvents[index].isAdulthood) {
+      alert("YOU DONT HAVE 18 YERS");
+      return;
+    }
+    if (FNameLName == "") {
+      alert("You must write something!");
+      return;
+    }
     arrayOfEvents[index].people.push({
       name: FNameLName,
       age: age,
@@ -129,6 +123,6 @@ addVisitor: function() {
     });
     localStorage.setItem("arrayOfEvents", JSON.stringify(arrayOfEvents));
     modal.className = "modal";
-    alert( "Good for you event" )
-}
+    alert("Good for you event");
+  }
 };

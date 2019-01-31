@@ -30,6 +30,7 @@ var Utils = {
   changeHTML: function(newURL) {
     location.replace(newURL);
   },
+
   sortByGender: function(id, gender) {
     var listSortByGender = [];
     var index = arrayOfEvents.findIndex(x => x.id == id);
@@ -40,6 +41,7 @@ var Utils = {
 
     return listSortByGender;
   },
+
   openTab: function(evt, tabName) {
     var i, x, tablinks;
     x = document.getElementsByClassName("content-tab");
@@ -82,7 +84,7 @@ var Utils = {
       console.log(arrayWithSymbolAgeControl);
     });
   },
-  
+
   getIndexByMaxValue: function(array) {
     return array.indexOf(Math.max(...array));
   }

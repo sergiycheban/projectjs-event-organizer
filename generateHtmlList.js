@@ -7,7 +7,7 @@ function generateList(events) {
 
     var visibility18 = obj.isAdulthood ? "" : "is-hidden";
     var visibilityPrice = obj.price != 0 ? "" : "is-hidden";
-    var archive       = !obj.isArchive ? "is-primary" : "is-warning";
+    var archive = !obj.isArchive ? "is-primary" : "is-warning";
 
     list.insertAdjacentHTML(
       "afterend",
@@ -36,13 +36,15 @@ function generateList(events) {
         obj.id +
         '" onClick="showVisitors(this.id,\'' +
         "Male" +
-        '\')" class="card-footer-item">Man visitors</a>' +   
+        '\')" class="card-footer-item">Man visitors</a>' +
         '<a id="' +
         obj.id +
         '" onClick="showVisitors(this.id)" class="card-footer-item">All visitors</a>' +
-        '<a class="button ' + archive + '" id="' +
+        '<a class="button ' +
+        archive +
+        '" id="' +
         obj.id +
-        '" onClick="archivedEvent(this.id)" class="card-footer-item">Archive</a>' + 
+        '" onClick="archivedEvent(this.id)" class="card-footer-item">Archive</a>' +
         " </footer></div>"
     );
   });
@@ -52,9 +54,9 @@ function generateListForUser(idList = "listForUser") {
   arrayOfEvents.map(function(obj) {
     var d = document.getElementById(idList);
 
-    var visibility18    = obj.isAdulthood ? "" : "is-hidden";
+    var visibility18 = obj.isAdulthood ? "" : "is-hidden";
     var visibilityPrice = obj.price != 0 ? "" : "is-hidden";
-    var isArchive       = !obj.isArchive ? "" : "is-hidden";
+    var isArchive = !obj.isArchive ? "" : "is-hidden";
 
     d.insertAdjacentHTML(
       "afterend",
@@ -66,11 +68,15 @@ function generateListForUser(idList = "listForUser") {
         obj.dateTime +
         "</h4> <p>" +
         obj.content +
-        '</p>     <div class="columns"> <div class="column">  <button class="button is-warning  ' + isArchive + '" id="' +
+        '</p>     <div class="columns"> <div class="column">  <button class="button is-warning  ' +
+        isArchive +
+        '" id="' +
         obj.id +
         '"  onClick="showModalVisitorReg(true , this.id)">I WILL GO</button> </div><div class="column"> </div> <div class="level-right ' +
         visibilityPrice +
-        '"><p class="has-text-danger"> ' + obj.price + '$ </p></div><div class="column"> </div> <div class="level-right ' +
+        '"><p class="has-text-danger"> ' +
+        obj.price +
+        '$ </p></div><div class="column"> </div> <div class="level-right ' +
         visibility18 +
         '"><p class="has-text-danger"> 18+ </p></div> </div> </div>  </div>  </div> </div>'
     );
